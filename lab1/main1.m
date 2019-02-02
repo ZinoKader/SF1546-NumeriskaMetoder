@@ -25,15 +25,15 @@ feltolerans = 10^-10;
 
 
 %uppgift 1a)
-%nums = 0:0.01:10;
-%plot(nums, ose(nums))
-%hold on
-%plot(nums, 0*nums, "r-")
+nums = 0:0.01:10;
+plot(nums, ose(nums))
+hold on
+plot(nums, 0*nums, "r-")
 %figure()
 
 
 % uppgift 1b)
-%fixpunkt(1.7, feltolerans)
+fixpunkt(1.7, feltolerans)
 % kan bara räkna ut nollställen som har tillräckligt långt avstånd från
 % varandra
 
