@@ -3,7 +3,7 @@ clc
 close all
 figure()
 
-X0 = [-1.5; 2; 2; 1.5];
+X0 = [-1.5; 2; 2; 1.5]; % finns 4 lösningar, denna startgissning ger en av dem
 XTEST1 = [0; 0; 0; 0];
 XTEST2 = [1; 2; 3; 4];
 
