@@ -31,11 +31,11 @@ function zeropoint = punkter(X0, ra, rb, a, b, tau)
        if fel < tau
            break
        end
-       X0 = xnew
+       X0 = xnew;
        N = N + 1;
     end
    format long 
-   N % ta bort semikolon för att se antal iterationer
+   N; % ta bort semikolon för att se antal iterationer
    zeropoint = xnew;
 end    
     
