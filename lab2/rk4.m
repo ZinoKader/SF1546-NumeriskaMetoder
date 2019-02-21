@@ -17,7 +17,7 @@ function [t, y] = rk4(u0, T, n)
         
         k3 = [u0(2) + (h/2), (-u/m) * u0(2) - (g/L) * sin(u0(1)) + (h/2) * k2(2)];
         
-        k4 = [u0(2) + h/2, (-u/m) * u0(2) - (g/L) * sin(u0(1)) + h/2 * k3(2)];
+        k4 = [u0(2) + h, (-u/m) * u0(2) - (g/L) * sin(u0(1)) + h * k3(2)];
         
         u0 = u0 + (h/6) * (k1 + 2*k2 + 2*k3 + k4);
         
@@ -25,7 +25,6 @@ function [t, y] = rk4(u0, T, n)
         t_values = [t_values; i];
     end    
         
-    
     t = t_values;
     y = f_values;
 end

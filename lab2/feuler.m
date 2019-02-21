@@ -8,17 +8,13 @@ function [t, y] = feuler(u0, T, n)
     
     t_values = [ ];
     f_values = [ ];
-    
-    f_next = u0;
    
     for i = 0:h:T
         % [z1 ; -u/m *z1(t) - g/L * sin(z0(t))]
-        f_next = f_next + h * [f_next(2), (-u/m) * f_next(2) - (g/L) * sin(f_next(1))];
-
-        f_values = [f_values; f_next];
+        u0 = u0 + h * [u0(2), (-u/m) * u0(2) - (g/L) * sin(u0(1))];
+        f_values = [f_values; u0];
         t_values = [t_values; i];
-    end    
-        
+    end          
     
     t = t_values;
     y = f_values;
