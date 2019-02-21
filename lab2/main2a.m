@@ -25,6 +25,8 @@ for i = 1:1:size(r_vals)
 end
 
 plot(t, [x_vals', y_vals', z_vals']);
+figure(2)
+%plot(x_vals', y_vals')
 
 legend("x", "y", "z");
 
