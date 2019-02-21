@@ -1,13 +1,14 @@
 
 clc
 %figure()
-
+figure(1)
 % test av funktioner
 [t, y] = feuler([0.5, 0], 5, 5/0.01);
-plot(t,y(:,1))
-hold on
+plot(t,y(:,1),'k-')
+%hold on
+figure(2)
 [t, y] = rk4([0.5, 0], 5, 5/0.01);
-plot(t,y(:,1))
+plot(t,y(:,1),'r-')
 
 
 kvoter_feuler = [ ];
@@ -45,7 +46,7 @@ for i = t4_feuler
 end
 
 log_kvot_feuler = abs(log2(kvoter_feuler(1:10,1)));
-log_kvot_rk4 = abs(log2(kvoter_rk4(117:126,1)));
+log_kvot_rk4 = abs(log2(log2((kvoter_rk4(117:126,1)))));
 
 kvottabell = [t4_feuler(1:10, 1), log_kvot_feuler, log_kvot_rk4];
 array2table(kvottabell, 'VariableNames', {'h', 'log_kvot_feuler', 'log_kvot_rk4'})
