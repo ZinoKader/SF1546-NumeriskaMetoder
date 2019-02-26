@@ -6,10 +6,10 @@ function [t, y] = rk4(u0, T, n)
     u = 0.2;
     h = T / n;
     
-    t_values = [ ];
-    f_values = [ ];
+    t_values = [0];
+    f_values = [u0];
    
-    for i = 0:h:T
+    for i = 0:h:T-h
         
         k1 = [u0(2), (-u/m) * u0(2) - (g/L) * sin(u0(1))];
         
