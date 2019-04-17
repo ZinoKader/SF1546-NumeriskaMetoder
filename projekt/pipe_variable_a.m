@@ -1,10 +1,12 @@
 
-function [T_values, r_values] = pipe(n)
+function [T_value] = pipe_variable_a(a)
+    
+    % n är fixerat nu, vi varierar alpha %
+    n = 6400;
 
     inner_r = 1;
     outer_r = 2;
     k = 50;
-    a = 15;
     Te = 20;
     Ti = 350;
     h = (outer_r - inner_r) / (n+1);
@@ -35,5 +37,6 @@ function [T_values, r_values] = pipe(n)
     A = sparse(A);
     T_values = A \ b;
     r_values = [inner_r, r_values, outer_r]';
+    T_value = T_values(end);
 end
 
