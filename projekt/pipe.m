@@ -7,10 +7,11 @@ function [T_values, r_values] = pipe(n)
     a = 15;
     Te = 20;
     Ti = 350;
-    h = (outer_r - inner_r) / (n+1);
+    h = (outer_r - inner_r) / n;
     standard_row = @(r) [r-(h/2), -2*r, r+(h/2)];
     
-    r_values = [];
+    r_values = [inner_r];
+    inner_r = inner_r + h;
     first_row = zeros(1, n);
     last_row = zeros(1, n);
     first_row(1, [1,2]) = [-2*inner_r, inner_r + (h/2)];
@@ -20,9 +21,6 @@ function [T_values, r_values] = pipe(n)
     offset = 0;
     row_count = 1;
     for r = inner_r + h : h : outer_r - h
-        if offset == n-2
-            break
-        end    
         middle_rows(row_count, [1+offset, 2+offset, 3+offset]) = standard_row(r);
         r_values = [r_values, r];
         row_count = row_count + 1;
@@ -34,6 +32,6 @@ function [T_values, r_values] = pipe(n)
     
     A = sparse(A);
     T_values = A \ b;
-    r_values = [inner_r, r_values, outer_r]';
+    r_values = [r_values, outer_r]';
 end
 
