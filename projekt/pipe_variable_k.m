@@ -1,8 +1,8 @@
 
-function [T_values, r_values] = pipe_variable_k(n)
+function [T_values, r_values] = pipe_variable_k(n, added_thickness)
 
     inner_r = 1;
-    outer_r = 2.3;
+    outer_r = 2 + added_thickness;
     k_0 = 50;
     k_1 = 3;
     delta = 1/50;
@@ -13,14 +13,16 @@ function [T_values, r_values] = pipe_variable_k(n)
     
     d = @(r) (1/2) + (1/pi) * atan(r/delta);
     k = @(r) k_0 + (k_1 - k_0) * d(r-2);
-    standard_row = @(r) [r - ((h/2) * (1 + k(r))), -2*r, r + ((h/2) * (1 + k(r)))];
+    k_prim = @(r) (k_1 - k_0) / (pi * (((r-2)/delta)^2 + 1));
+    K = @(r) 1 + r * (k_prim(r) / k(r));
+    standard_row = @(r) [r - ((h/2) * (1 + K(r))), -2*r, r + ((h/2) * (1 + K(r)))];
     
     r_values = [inner_r];
     inner_r = inner_r + h;
     first_row = zeros(1, n);
     last_row = zeros(1, n);
-    first_row(1, [1,2]) = [-2*inner_r, inner_r + ((h/2) * (1 + k(inner_r)))];
-    last_row(1, [n-2, n-1, n]) = [1, -4, 3 + ((2*a*h)/k(outer_r))];
+    first_row(1, [1,2]) = [-2*inner_r, inner_r + ((h/2) * (1 + K(inner_r)))];
+    last_row(1, [n-2, n-1, n]) = [1, -4, 3 + ((2*a*h)/K(outer_r))];
     middle_rows = zeros(n-2,n);
     
     offset = 0;
@@ -33,7 +35,7 @@ function [T_values, r_values] = pipe_variable_k(n)
     end
     A = [first_row; middle_rows; last_row];
     b = zeros(n-2, 1);
-    b = [-Ti*(inner_r - ((h/2) * (1 + k(inner_r)))); b; (2*a*h*Te)/k(outer_r)];
+    b = [-Ti*(inner_r - ((h/2) * (1 + K(inner_r)))); b; (2*a*h*Te)/K(outer_r)];
     
     A = sparse(A);
     T_values = A \ b;
