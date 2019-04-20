@@ -1,8 +1,9 @@
 
+n = 1600;
 
-f = @(a) pipe_variable_a(a) - 100;
-a = 100;
-b = 150;
+f = @(k) pipe_variable_k_last_temp(n, k) - 100;
+a = 0;
+b = 1;
 
 c = 1;
 tol = 1e-5;
@@ -22,4 +23,4 @@ while abs(f(c)) > tol
 end    
 
 
-disp("Beräknad alpha: " + num2str(c)) 
+disp("Beräknad tjocklek: " + num2str(c)) 
