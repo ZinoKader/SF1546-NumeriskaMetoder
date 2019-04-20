@@ -13,7 +13,7 @@ function [T_values, r_values] = pipe_variable_k(n, added_thickness)
     
     d = @(r) (1/2) + (1/pi) * atan(r/delta);
     k = @(r) k_0 + (k_1 - k_0) * d(r-2);
-    k_prim = @(r) delta * (k_1 - k_0) / (pi * (delta^2 + r^2 - 4*r + 4));
+    k_prim = @(r) delta * (k_1 - k_0) / (pi * (delta^2 + (r-2)^2));
     K = @(r) 1 + r * (k_prim(r) / k(r));
     standard_row = @(r) [r - ((h/2) * K(r)), -2*r, r + ((h/2) * K(r))];
     
