@@ -5,7 +5,7 @@ N = 25;
 T_outer_values = [];
 N_values = [];
 
-for i = 1:1:11
+for i = 1:1:6
     T_values = pipe(N);
     T_outer_values = [T_outer_values, T_values(end)];
     N_values = [N_values, N];

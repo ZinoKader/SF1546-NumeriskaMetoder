@@ -1,7 +1,7 @@
 
 n = 1600;
 
-f = @(k) pipe_variable_k_last_temp(n, k) - 100;
+f = @(t) pipe_variable_k_last_temp(n, t) - 100;
 a = 0;
 b = 1;
 

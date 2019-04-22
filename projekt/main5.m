@@ -21,8 +21,11 @@ Vi ser att 120.6003 skiljer sig mest ifrån referensvärdet av
 critical_a på 112.7105
 %}
 
-max_disturbed_a = 120.6003;
+max_disturbed_a_Ti = 120.6003;
+max_disturbed_a_k = 118.3461;
 
-max_deviation = abs(critical_a - max_disturbed_a);
+max_deviation = abs(critical_a - max_disturbed_a_Ti) + abs(critical_a - max_disturbed_a_k);
+percentage_error = 100 * max_deviation / critical_a;
 
 disp("Kritiska värmeöverföringstalet är " + num2str(critical_a) + " ± " + num2str(max_deviation)) 
+disp("Alternativt i procent " + num2str(percentage_error) + " %") 
