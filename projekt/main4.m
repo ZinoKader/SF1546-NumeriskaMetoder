@@ -1,14 +1,16 @@
 
+n = 800;
+q = 5;
 
-f = @(a) pipe_variable_a(a) - 100;
+f = @(a) pipe_variable_a(n, a) - 100;
 a = 100;
 b = 150;
 
 c = 1;
-tol = 1e-5;
+tol = @(q) 10^(-q);
 
 
-while abs(f(c)) > tol
+while abs(f(c)) > tol(q)
     a_val = f(a);
     b_val = f(b);
     c = (a + b) / 2;
@@ -22,4 +24,6 @@ while abs(f(c)) > tol
 end    
 
 
+disp("n: " + num2str(n)) 
+disp("q: " + num2str(q)) 
 disp("Beräknad alpha: " + num2str(c)) 

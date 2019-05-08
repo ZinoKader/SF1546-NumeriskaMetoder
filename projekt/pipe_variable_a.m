@@ -1,8 +1,5 @@
 
-function [T_value] = pipe_variable_a(a)
-
-    % fixerat n, referens %
-    n = 800;
+function [T_value] = pipe_variable_a(n, a)
 
     inner_r = 1;
     outer_r = 2;
